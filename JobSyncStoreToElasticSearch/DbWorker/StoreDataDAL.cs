@@ -6,7 +6,7 @@ namespace JobSyncStoreToElasticSearch.DbWorker
 {
     public class StoreDataDAL
     {
-        public static string getDataFromStore(string store_name)
+        public static string getDataFromStore(string store_name, SqlConnection sqlConnection)
         {
             try
             {
@@ -14,7 +14,7 @@ namespace JobSyncStoreToElasticSearch.DbWorker
                 {
 
                     case "Sp_GetAllArticle":
-                        return getListArticle(store_name);
+                        return getListArticle(store_name, sqlConnection);
                     default:
                         return string.Empty;
                 }
@@ -24,12 +24,12 @@ namespace JobSyncStoreToElasticSearch.DbWorker
                 return string.Empty;
             }
         }
-        public static string getListArticle(string store_name)
+        public static string getListArticle(string store_name , SqlConnection sqlConnection)
         {
             try
             {
                 var obj_table_result = new DataSet();
-                DbWorker.Fill(obj_table_result, store_name);
+                DbWorker.Fill(obj_table_result, store_name, sqlConnection);
                 if (obj_table_result != null && obj_table_result.Tables.Count > 0)
                 {
                     var table = obj_table_result.Tables[0];

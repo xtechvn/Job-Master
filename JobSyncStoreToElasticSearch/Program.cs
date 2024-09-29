@@ -140,64 +140,70 @@ namespace JobSyncStoreToElasticSearch
 
                                 var obj_data = JsonConvert.DeserializeObject<DataInfoModel>(message);
                                 // Gán project_type vào catalog
-                                //string newCatalog = obj_data.project_type;
-                                //var builder = new SqlConnectionStringBuilder(ConfigurationManager.AppSettings["database_source"]);
-                                //builder.InitialCatalog = newCatalog;
-                                //var connectionString = builder.ConnectionString;
+                                string newCatalog = obj_data.project_type;
+                                var builder = new SqlConnectionStringBuilder(ConfigurationManager.AppSettings["database_source"]);
+                                builder.InitialCatalog = newCatalog;
+                                var connectionString = builder.ConnectionString;
 
                                 //Console.WriteLine("Receivice Data:" + message);
-
-                                //1. Kết nối tới ES
-                                var nodes = new Uri[] { new Uri(es_host_target) };
-                                var connectionPool = new StaticConnectionPool(nodes);
-                                var connectionSettings = new ConnectionSettings(connectionPool).DisableDirectStreaming().DefaultIndex(obj_data.index_es);
-                                var elasticClient = new ElasticClient(connectionSettings);
-
-                                //2. Lấy thông tin trong Database theo store name
-                                var data_json = StoreDataDAL.getDataFromStore(obj_data.store_name);
-                                //Console.WriteLine($"Data JSON received: {data_json}");
-
-                                if (!string.IsNullOrEmpty(data_json))
+                                using (var sqlConnection = new SqlConnection(connectionString))
                                 {
-                                    var dataList = JsonConvert.DeserializeObject<List<Dictionary<string, object>>>(data_json);
+                                    sqlConnection.Open();
+                                    var nodes = new Uri[] { new Uri(es_host_target) };
+                                    var connectionPool = new StaticConnectionPool(nodes);
+                                    var connectionSettings = new ConnectionSettings(connectionPool).DisableDirectStreaming().DefaultIndex(obj_data.index_es);
+                                    var elasticClient = new ElasticClient(connectionSettings);
 
-                                    // Lấy danh sách các Id hiện có trong dữ liệu
-                                    var existingIds = dataList.Select(x => x["Id"].ToString()).ToList();
+                                    //2. Lấy thông tin trong Database theo store name
+                                    var data_json = StoreDataDAL.getDataFromStore(obj_data.store_name, sqlConnection);
+                                    //Console.WriteLine($"Data JSON received: {data_json}");
 
-                                    // 3. Xóa tài liệu trong Elasticsearch không còn tồn tại trong SQL Server
-                                    var deleteResponse = elasticClient.DeleteByQuery<object>(d => d
-                                        .Index(obj_data.index_es)
-                                        .Query(q => q
-                                            .Bool(b => b
-                                                .MustNot(m => m.Terms(t => t.Field("Id").Terms(existingIds)))
+                                    if (!string.IsNullOrEmpty(data_json))
+                                    {
+                                        var dataList = JsonConvert.DeserializeObject<List<Dictionary<string, object>>>(data_json);
+
+                                        // Lấy danh sách các Id hiện có trong dữ liệu
+                                        var existingIds = dataList.Select(x => x["Id"].ToString()).ToList();
+
+                                        // 3. Xóa tài liệu trong Elasticsearch không còn tồn tại trong SQL Server
+                                        var deleteResponse = elasticClient.DeleteByQuery<object>(d => d
+                                            .Index(obj_data.index_es)
+                                            .Query(q => q
+                                                .Bool(b => b
+                                                    .MustNot(m => m.Terms(t => t.Field("Id").Terms(existingIds)))
+                                                )
                                             )
-                                        )
-                                    );
-
-                                    if (!deleteResponse.IsValid)
-                                    {
-                                        Console.WriteLine($"Failed to delete documents: {deleteResponse.DebugInformation}");
-                                    }
-
-                                    // 4. Cập nhật hoặc thêm mới tài liệu
-                                    foreach (var item in dataList)
-                                    {
-                                        var articleId = item["Id"].ToString(); // Lấy ID từ dữ liệu
-
-                                        // Cập nhật tài liệu
-                                        var updateResponse = elasticClient.Update<Dictionary<string, object>>(articleId, u => u
-                                            .Doc(item) // Cập nhật tài liệu với nội dung mới
-                                            .Upsert(item) // Nếu không tồn tại, tạo mới
                                         );
 
-                                        if (!updateResponse.IsValid)
+                                        if (!deleteResponse.IsValid)
                                         {
-                                            Console.WriteLine($"Failed to update or create document {articleId}: {updateResponse.DebugInformation}");
+                                            Console.WriteLine($"Failed to delete documents: {deleteResponse.DebugInformation}");
                                         }
+
+                                        // 4. Cập nhật hoặc thêm mới tài liệu
+                                        foreach (var item in dataList)
+                                        {
+                                            var articleId = item["Id"].ToString(); // Lấy ID từ dữ liệu
+
+                                            // Cập nhật tài liệu
+                                            var updateResponse = elasticClient.Update<Dictionary<string, object>>(articleId, u => u
+                                                .Doc(item) // Cập nhật tài liệu với nội dung mới
+                                                .Upsert(item) // Nếu không tồn tại, tạo mới
+                                            );
+
+                                            if (!updateResponse.IsValid)
+                                            {
+                                                Console.WriteLine($"Failed to update or create document {articleId}: {updateResponse.DebugInformation}");
+                                            }
+                                        }
+
+                                        Console.WriteLine("All documents processed successfully.");
                                     }
 
-                                    Console.WriteLine("All documents processed successfully.");
                                 }
+
+                                //1. Kết nối tới ES
+
 
                                 channel.BasicAck(deliveryTag: ea.DeliveryTag, multiple: false);
                             }
