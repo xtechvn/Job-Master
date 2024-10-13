@@ -1,6 +1,5 @@
 ﻿using Elasticsearch.Net;
 using JobSyncStoreToElasticSearch.Common;
-using JobSyncStoreToElasticSearch.Constant;
 using JobSyncStoreToElasticSearch.DbWorker;
 using JobSyncStoreToElasticSearch.Models;
 using Nest;
@@ -117,7 +116,6 @@ namespace JobSyncStoreToElasticSearch
                         {
                             try
                             {
-
                                 var body = ea.Body.ToArray();
                                 var message = Encoding.UTF8.GetString(body);
 

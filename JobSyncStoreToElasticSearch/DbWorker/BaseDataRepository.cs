@@ -12,10 +12,14 @@ namespace JobSyncStoreToElasticSearch.DbWorker
     public class BaseDataRepository
     {
         public string connection { get; set; }
-        public BaseDataRepository(string _connection)
+        public string store_name { get; set; }
+        public BaseDataRepository(string _connection, string _store_name)
         {
             connection = _connection;
+            store_name = _store_name;
         }
+
+        
         /// <summary>
         /// project_type: dựa vào đây để lấy ra các chuỗi connection sql tương ứng
         /// </summary>
@@ -23,7 +27,7 @@ namespace JobSyncStoreToElasticSearch.DbWorker
         /// <param name="id"></param>
         /// <param name="connection"></param>
         /// <returns></returns>
-        public virtual string getAllArticle(string store_name, int id, string connection)
+        public virtual string getAllArticle(int id)
         {
             try
             {

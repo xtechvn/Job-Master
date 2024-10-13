@@ -6,8 +6,7 @@ namespace JobSyncStoreToElasticSearch.DbWorker.Adavigo_Travel
 {
     class AdavigoTravelRepository: BaseDataRepository
     {
-        public AdavigoTravelRepository(string connection)
-           : base(connection) { }
+        public AdavigoTravelRepository(string _connection, string _store_name) : base(_connection, _store_name) { }
 
         public virtual string getListHotelBooking(string store_name)
         {

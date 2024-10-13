@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 
 namespace JobSyncStoreToElasticSearch.DbWorker
 {
@@ -25,18 +26,21 @@ namespace JobSyncStoreToElasticSearch.DbWorker
                         es_host_target = ConfigurationManager.AppSettings["es_master"].ToString();  // dia chi es để tranfer data
 
                         // Connect lấy data
-                        var data_biolife = new BiolifeRepository(connection_source);
-                        json_data_source = data_biolife.getAllArticle(obj_data.store_name, Convert.ToInt32(obj_data.id), connection_source);
+                        var data_biolife = new BiolifeRepository(obj_data.store_name,connection_source);
+
+                        switch (obj_data.store_name)
+                        {
+                            case "SP_GetAllArticle":
+                                json_data_source = data_biolife.getAllArticle(Convert.ToInt32(obj_data.id));
+                                break;
+                            default:
+                                break;
+                        }
+                        
 
                         break;
                     case ProjectType.HULOTOYS:
-                        connection_source = ConfigurationManager.AppSettings["database_hulotoys"].ToString();
-                        es_host_target = ConfigurationManager.AppSettings["es_master"].ToString();  // dia chi es để tranfer data
-
-                        // Connect lấy data
-                        var data_hulotoys = new BiolifeRepository(connection_source);
-                        json_data_source = data_hulotoys.getAllArticle(obj_data.store_name, Convert.ToInt32(obj_data.id), connection_source);
-
+                        
                         break;
 
                     case ProjectType.ADAVIGO_CMS:

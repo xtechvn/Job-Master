@@ -1,9 +1,9 @@
 ﻿namespace JobSyncStoreToElasticSearch.DbWorker.Biolife
 {
-    class BiolifeRepository: BaseDataRepository
+    class BiolifeRepository : BaseDataRepository
     {
-        public BiolifeRepository(string connection) 
-            : base(connection) { }
+
+        public BiolifeRepository(string _connection, string _store_name) : base(_connection, _store_name) { }
 
         public virtual double getPageViewTotal()
         {
