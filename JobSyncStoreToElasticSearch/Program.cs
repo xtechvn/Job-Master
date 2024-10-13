@@ -1,5 +1,6 @@
 ﻿using Elasticsearch.Net;
 using JobSyncStoreToElasticSearch.Common;
+using JobSyncStoreToElasticSearch.Constant;
 using JobSyncStoreToElasticSearch.DbWorker;
 using JobSyncStoreToElasticSearch.Models;
 using Nest;
@@ -7,7 +8,6 @@ using Newtonsoft.Json;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using System.Configuration;
-using System.Data.SqlClient;
 using System.Text;
 
 namespace JobSyncStoreToElasticSearch
@@ -17,93 +17,76 @@ namespace JobSyncStoreToElasticSearch
     /// </summary>
     class Program
     {
-        private static string queue_sync_database_store_to_es = ConfigurationManager.AppSettings["sync_store_to_es"];
+        public static string QUEUE_NAME = ConfigurationManager.AppSettings["BIOLIE_SYNC_SP_GET_ARTICLE"];
         public static string QUEUE_HOST = ConfigurationManager.AppSettings["QUEUE_HOST"];
         public static string QUEUE_V_HOST = ConfigurationManager.AppSettings["QUEUE_V_HOST"];
         public static string QUEUE_USERNAME = ConfigurationManager.AppSettings["QUEUE_USERNAME"];
         public static string QUEUE_PASSWORD = ConfigurationManager.AppSettings["QUEUE_PASSWORD"];
         public static string QUEUE_PORT = ConfigurationManager.AppSettings["QUEUE_PORT"];
         public static string QUEUE_KEY_API = ConfigurationManager.AppSettings["QUEUE_KEY_API"];
+
         public static string tele_token = ConfigurationManager.AppSettings["tele_token"];
         public static string tele_group_id = ConfigurationManager.AppSettings["tele_group_id"];
-        public static string es_host_target = ConfigurationManager.AppSettings["es_host_target"];
-        public static string es_document_type_target = ConfigurationManager.AppSettings["es_document_type_target"];
+
+        // Địa chỉ es để database sync lên
+        public static string es_host_target = ConfigurationManager.AppSettings["es_master"];
+
 
         static void Main(string[] args)
         {
             try
             {
+                #region TEST
+              //  var obj_data_queue = new DataInfoModel
+              //  {
+              //      index_es = "es_biolife_sp_get_article",
+              //      project_type = Convert.ToInt16(ProjectType.BIOLIFE),
+              //      store_name = "SP_GetAllArticle",
+              //      id = "-1"
+              //  };
 
-                //#region TEST
-                //// Kết nối tới ES
-                //var nodes = new Uri[] { new Uri(es_host_target) };
-                //var connectionPool = new StaticConnectionPool(nodes);
-                //var connectionSettings = new ConnectionSettings(connectionPool).DisableDirectStreaming().DefaultIndex("list_hotel_booking");
-                //var elasticClient = new ElasticClient(connectionSettings);
+              //  var obj_config_info = StoreDataDAL.getDataFromStore(obj_data_queue);
 
-                //// Lấy thông tin trong Database theo store name
-                //var data_json = StoreDataDAL.getDataFromStore("SP_GetListHotelBooking");
+              //  // Kết nối tới ES
+              //  var nodes = new Uri[] { new Uri(obj_config_info.es_host_target) };
+              //  var connectionPool = new StaticConnectionPool(nodes);
+              //  var connectionSettings = new ConnectionSettings(connectionPool).DisableDirectStreaming().DefaultIndex(obj_data_queue.index_es);
+              //  var elasticClient = new ElasticClient(connectionSettings);
 
-                //if (!string.IsNullOrEmpty(data_json))
-                //{
-                //    var dataList = JsonConvert.DeserializeObject<List<Dictionary<string, object>>>(data_json);
+              //  // Lấy thông tin trong Database theo store name               
+              //  var dataList = JsonConvert.DeserializeObject<List<Dictionary<string, object>>>(obj_config_info.data_source);
 
-                //    // Đẩy data từ DB lên ElasticSearch
-                //    var bulkIndexResponse = elasticClient.Bulk(b => b
-                //        .Index("list_hotel_booking")
-                //        .IndexMany(dataList)
-                //    );
-                //    // Kiểm tra kết quả trả về
-                //    if (bulkIndexResponse.Errors)
-                //    {
-                //        foreach (var item in bulkIndexResponse.ItemsWithErrors)
-                //        {
-                //            Console.WriteLine($"Failed to index document {item.Id}: {item.Error}");
-                //        }
-                //    }
-                //    else
-                //    {
-                //        Console.WriteLine("All documents indexed successfully.");
-                //    }
-
-                //}
-                //#endregion
+              //  var bulkIndexResponse = elasticClient.Bulk(b => b
+              //    .Index(obj_config_info.index_node)
+              //    .IndexMany(dataList, (descriptor, item) =>
+              //    {
+              //        // Lấy id từ từ điển
+              //        object idValue;
+              //        if (item.TryGetValue("id", out idValue))  // Giả sử id được lưu với khóa "id"
+              //        {
+              //            return descriptor.Id(idValue.ToString());
+              //        }
+              //        return descriptor;  // Nếu không có id, nó sẽ bỏ qua
+              //    })
+              //);
 
 
-                //#region TEST
-                //// Kết nối tới ES
-                //var nodes = new Uri[] { new Uri(es_host_target) };
-                //var connectionPool = new StaticConnectionPool(nodes);
-                //var connectionSettings = new ConnectionSettings(connectionPool).DisableDirectStreaming().DefaultIndex("list_article_biolife");
-                //var elasticClient = new ElasticClient(connectionSettings);
 
-                //// Lấy thông tin trong Database theo store name
-                //var data_json = StoreDataDAL.getDataFromStore("Sp_GetAllArticle");
+              //  // Kiểm tra kết quả trả về
+              //  if (bulkIndexResponse.Errors)
+              //  {
+              //      foreach (var item in bulkIndexResponse.ItemsWithErrors)
+              //      {
+              //          Console.WriteLine($"Failed to index document {item.Id}: {item.Error}");
+              //      }
+              //  }
+              //  else
+              //  {
+              //      Console.WriteLine("All documents indexed successfully.");
+              //  }
 
-                //if (!string.IsNullOrEmpty(data_json))
-                //{
-                //    var dataList = JsonConvert.DeserializeObject<List<Dictionary<string, object>>>(data_json);
 
-                //    // Đẩy data từ DB lên ElasticSearch
-                //    var bulkIndexResponse = elasticClient.Bulk(b => b
-                //        .Index("list_article_biolife")
-                //        .IndexMany(dataList)
-                //    );
-                //    // Kiểm tra kết quả trả về
-                //    if (bulkIndexResponse.Errors)
-                //    {
-                //        foreach (var item in bulkIndexResponse.ItemsWithErrors)
-                //        {
-                //            Console.WriteLine($"Failed to index document {item.Id}: {item.Error}");
-                //        }
-                //    }
-                //    else
-                //    {
-                //        Console.WriteLine("All documents indexed successfully.");
-                //    }
-
-                //}
-                //#endregion
+                #endregion
 
                 #region READ QUEUE
                 var factory = new ConnectionFactory()
@@ -119,8 +102,8 @@ namespace JobSyncStoreToElasticSearch
                 {
                     try
                     {
-                        channel.QueueDeclare(queue: "ARTICLE_DATA_QUEUE",
-                                             durable: false,
+                        channel.QueueDeclare(queue: QUEUE_NAME,
+                                             durable: true,
                                              exclusive: false,
                                              autoDelete: false,
                                              arguments: null);
@@ -138,72 +121,43 @@ namespace JobSyncStoreToElasticSearch
                                 var body = ea.Body.ToArray();
                                 var message = Encoding.UTF8.GetString(body);
 
-                                var obj_data = JsonConvert.DeserializeObject<DataInfoModel>(message);
-                                // Gán project_type vào catalog
-                                string newCatalog = obj_data.project_type;
-                                var builder = new SqlConnectionStringBuilder(ConfigurationManager.AppSettings["database_source"]);
-                                builder.InitialCatalog = newCatalog;
-                                var connectionString = builder.ConnectionString;
+                                Console.WriteLine("Receivice Data:" + message);
 
-                                //Console.WriteLine("Receivice Data:" + message);
-                                using (var sqlConnection = new SqlConnection(connectionString))
+                                var obj_data_queue = JsonConvert.DeserializeObject<DataInfoModel>(message);
+
+                                //1. Lấy kết quả từ database đổ về
+                                var obj_config_info = StoreDataDAL.getDataFromStore(obj_data_queue);
+
+
+                                //2. Kết nối tới ES
+                                var nodes = new Uri[] { new Uri(obj_config_info.es_host_target) };
+                                var connectionPool = new StaticConnectionPool(nodes);
+                                var connectionSettings = new ConnectionSettings(connectionPool).DisableDirectStreaming().DefaultIndex(obj_config_info.index_node);
+                                var elasticClient = new ElasticClient(connectionSettings);
+
+                                if (obj_config_info != null)
                                 {
-                                    sqlConnection.Open();
-                                    var nodes = new Uri[] { new Uri(es_host_target) };
-                                    var connectionPool = new StaticConnectionPool(nodes);
-                                    var connectionSettings = new ConnectionSettings(connectionPool).DisableDirectStreaming().DefaultIndex(obj_data.index_es);
-                                    var elasticClient = new ElasticClient(connectionSettings);
+                                    var dataList = JsonConvert.DeserializeObject<List<Dictionary<string, object>>>(obj_config_info.data_source);
 
-                                    //2. Lấy thông tin trong Database theo store name
-                                    var data_json = StoreDataDAL.getDataFromStore(obj_data.store_name, sqlConnection);
-                                    //Console.WriteLine($"Data JSON received: {data_json}");
-
-                                    if (!string.IsNullOrEmpty(data_json))
+                                    //3. Đẩy data từ DB lên ElasticSearch
+                                    var bulkIndexResponse = elasticClient.Bulk(b => b
+                                        .Index(obj_config_info.index_node)
+                                        .IndexMany(dataList)
+                                    );
+                                    // Kiểm tra kết quả trả về
+                                    if (bulkIndexResponse.Errors)
                                     {
-                                        var dataList = JsonConvert.DeserializeObject<List<Dictionary<string, object>>>(data_json);
-
-                                        // Lấy danh sách các Id hiện có trong dữ liệu
-                                        var existingIds = dataList.Select(x => x["Id"].ToString()).ToList();
-
-                                        // 3. Xóa tài liệu trong Elasticsearch không còn tồn tại trong SQL Server
-                                        var deleteResponse = elasticClient.DeleteByQuery<object>(d => d
-                                            .Index(obj_data.index_es)
-                                            .Query(q => q
-                                                .Bool(b => b
-                                                    .MustNot(m => m.Terms(t => t.Field("Id").Terms(existingIds)))
-                                                )
-                                            )
-                                        );
-
-                                        if (!deleteResponse.IsValid)
+                                        foreach (var item in bulkIndexResponse.ItemsWithErrors)
                                         {
-                                            Console.WriteLine($"Failed to delete documents: {deleteResponse.DebugInformation}");
+                                            Console.WriteLine($"Failed to index document {item.Id}: {item.Error}");
                                         }
-
-                                        // 4. Cập nhật hoặc thêm mới tài liệu
-                                        foreach (var item in dataList)
-                                        {
-                                            var articleId = item["Id"].ToString(); // Lấy ID từ dữ liệu
-
-                                            // Cập nhật tài liệu
-                                            var updateResponse = elasticClient.Update<Dictionary<string, object>>(articleId, u => u
-                                                .Doc(item) // Cập nhật tài liệu với nội dung mới
-                                                .Upsert(item) // Nếu không tồn tại, tạo mới
-                                            );
-
-                                            if (!updateResponse.IsValid)
-                                            {
-                                                Console.WriteLine($"Failed to update or create document {articleId}: {updateResponse.DebugInformation}");
-                                            }
-                                        }
-
-                                        Console.WriteLine("All documents processed successfully.");
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("All documents indexed successfully.");
                                     }
 
                                 }
-
-                                //1. Kết nối tới ES
-
 
                                 channel.BasicAck(deliveryTag: ea.DeliveryTag, multiple: false);
                             }
@@ -214,7 +168,7 @@ namespace JobSyncStoreToElasticSearch
                             }
                         };
 
-                        channel.BasicConsume(queue: "ARTICLE_DATA_QUEUE", autoAck: false, consumer: consumer);
+                        channel.BasicConsume(queue: QUEUE_NAME, autoAck: false, consumer: consumer);
 
                         Console.ReadLine();
 
