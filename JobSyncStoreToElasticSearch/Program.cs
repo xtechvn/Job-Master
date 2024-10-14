@@ -22,7 +22,7 @@ namespace JobSyncStoreToElasticSearch
         public static string QUEUE_USERNAME = ConfigurationManager.AppSettings["QUEUE_USERNAME"];
         public static string QUEUE_PASSWORD = ConfigurationManager.AppSettings["QUEUE_PASSWORD"];
         public static string QUEUE_PORT = ConfigurationManager.AppSettings["QUEUE_PORT"];
-        public static string QUEUE_KEY_API = ConfigurationManager.AppSettings["QUEUE_KEY_API"];
+        
 
         public static string tele_token = ConfigurationManager.AppSettings["tele_token"];
         public static string tele_group_id = ConfigurationManager.AppSettings["tele_group_id"];

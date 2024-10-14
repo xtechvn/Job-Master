@@ -30,3 +30,4 @@ F:\PROJECT\JOB_MASTER\Job-Master_git\JobSyncStoreToElasticSearch\obj\Debug\net6.
 F:\PROJECT\JOB_MASTER\Job-Master_git\JobSyncStoreToElasticSearch\obj\Debug\net6.0\JobSyncStoreToElasticSearch.pdb
 F:\PROJECT\JOB_MASTER\Job-Master_git\JobSyncStoreToElasticSearch\obj\Debug\net6.0\JobSyncStoreToElasticSearch.genruntimeconfig.cache
 F:\PROJECT\JOB_MASTER\Job-Master_git\JobSyncStoreToElasticSearch\obj\Debug\net6.0\ref\JobSyncStoreToElasticSearch.dll
+F:\PROJECT\JOB_MASTER\Job-Master_git\JobSyncStoreToElasticSearch\bin\Debug\net6.0\App.config
