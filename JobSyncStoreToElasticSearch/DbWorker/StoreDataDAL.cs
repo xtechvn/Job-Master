@@ -26,7 +26,7 @@ namespace JobSyncStoreToElasticSearch.DbWorker
                         es_host_target = ConfigurationManager.AppSettings["es_master"].ToString();  // dia chi es để tranfer data
 
                         // Connect lấy data
-                        var data_biolife = new BiolifeRepository(obj_data.store_name,connection_source);
+                        var data_biolife = new BiolifeRepository(connection_source, obj_data.store_name);
 
                         switch (obj_data.store_name)
                         {
