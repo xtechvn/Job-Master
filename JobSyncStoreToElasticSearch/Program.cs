@@ -16,7 +16,7 @@ namespace JobSyncStoreToElasticSearch
     /// </summary>
     class Program
     {
-        public static string QUEUE_NAME = ConfigurationManager.AppSettings["BIOLIE_SYNC_SP_GET_ARTICLE"];
+        public static string QUEUE_NAME = ConfigurationManager.AppSettings["QUEUE_NAME"];
         public static string QUEUE_HOST = ConfigurationManager.AppSettings["QUEUE_HOST"];
         public static string QUEUE_V_HOST = ConfigurationManager.AppSettings["QUEUE_V_HOST"];
         public static string QUEUE_USERNAME = ConfigurationManager.AppSettings["QUEUE_USERNAME"];
