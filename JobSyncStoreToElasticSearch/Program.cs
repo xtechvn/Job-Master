@@ -139,9 +139,18 @@ namespace JobSyncStoreToElasticSearch
 
                                     //3. Đẩy data từ DB lên ElasticSearch
                                     var bulkIndexResponse = elasticClient.Bulk(b => b
-                                        .Index(obj_config_info.index_node)
-                                        .IndexMany(dataList)
-                                    );
+                                      .Index(obj_config_info.index_node)
+                                      .IndexMany(dataList, (descriptor, item) =>
+                                      {
+                                          // Lấy id từ từ điển
+                                          object idValue;
+                                          if (item.TryGetValue("id", out idValue))  // Giả sử id được lưu với khóa "id"
+                                          {
+                                              return descriptor.Id(idValue.ToString());
+                                          }
+                                          return descriptor;  // Nếu không có id, nó sẽ bỏ qua
+                                      })
+                                  );
                                     // Kiểm tra kết quả trả về
                                     if (bulkIndexResponse.Errors)
                                     {
