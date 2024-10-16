@@ -33,6 +33,9 @@ namespace JobSyncStoreToElasticSearch.DbWorker
                             case "SP_GetAllArticle":
                                 json_data_source = data_biolife.getAllArticle(Convert.ToInt32(obj_data.id));
                                 break;
+                            case "sp_getGroupProduct":
+                                json_data_source = data_biolife.getAllGroupProduct(Convert.ToInt32(obj_data.id));
+                                break;
                             default:
                                 break;
                         }

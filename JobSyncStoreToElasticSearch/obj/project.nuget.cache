@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "SJV/bnRqfx6oYMoDR93xpACUbHhN05oM3HvwIu6r14ArlIoZyiInWF5UT+YnzTv/t+b4esLtS9y4oz36Oj7A+g==",
+  "dgSpecHash": "AiVADiD4J6n6bYHKCt+kCzQCVbViPEAJqT9+RUAJapmcf/JcbxnUDLMAuZnZA/YGh33mA5/hA78k7ie0C2ZKCA==",
   "success": true,
-  "projectFilePath": "D:\\Thuc_Tap_VnXpress\\aa\\Job-Master\\JobSyncStoreToElasticSearch\\JobSyncStoreToElasticSearch.csproj",
+  "projectFilePath": "D:\\Thuc_Tap_VnXpress\\Job-Master\\JobSyncStoreToElasticSearch\\JobSyncStoreToElasticSearch.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\nguye\\.nuget\\packages\\elasticsearch.net\\7.17.5\\elasticsearch.net.7.17.5.nupkg.sha512",
     "C:\\Users\\nguye\\.nuget\\packages\\microsoft.csharp\\4.6.0\\microsoft.csharp.4.6.0.nupkg.sha512",
