@@ -1,5 +1,6 @@
 ﻿using JobSyncStoreToElasticSearch.Constant;
 using JobSyncStoreToElasticSearch.DbWorker.Biolife;
+using JobSyncStoreToElasticSearch.DbWorker.Hulotoys;
 using JobSyncStoreToElasticSearch.Models;
 using Newtonsoft.Json;
 using System.Configuration;
@@ -42,11 +43,25 @@ namespace JobSyncStoreToElasticSearch.DbWorker
                             default:
                                 break;
                         }
-                        
+
 
                         break;
                     case ProjectType.HULOTOYS:
-                        
+                        connection_source = ConfigurationManager.AppSettings["database_hulotoys"].ToString(); // Chuỗi connect tới Database                             
+                        es_host_target = ConfigurationManager.AppSettings["es_master"].ToString();  // dia chi es để tranfer data
+
+                        // Connect lấy data
+                        var data_hulotoys = new HulotoysRepository(connection_source, obj_data.store_name);
+                        switch (obj_data.store_name)
+                        {
+                            case "SP_GetAllArticle":
+                                json_data_source = data_hulotoys.getAllArticle(Convert.ToInt32(obj_data.id));
+                                break;
+
+                            default:
+                                break;
+                        }
+
                         break;
 
                     case ProjectType.ADAVIGO_CMS:
@@ -69,6 +84,6 @@ namespace JobSyncStoreToElasticSearch.DbWorker
                 return null;
             }
         }
-       
+
     }
 }

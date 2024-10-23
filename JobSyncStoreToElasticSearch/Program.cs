@@ -1,5 +1,6 @@
 ﻿using Elasticsearch.Net;
 using JobSyncStoreToElasticSearch.Common;
+using JobSyncStoreToElasticSearch.Constant;
 using JobSyncStoreToElasticSearch.DbWorker;
 using JobSyncStoreToElasticSearch.Models;
 using Nest;
@@ -136,6 +137,7 @@ namespace JobSyncStoreToElasticSearch
                                 if (obj_config_info != null)
                                 {
                                     var dataList = JsonConvert.DeserializeObject<List<Dictionary<string, object>>>(obj_config_info.data_source);
+                                    var projectTypeName = ProjectType.GetProjectTypeName(obj_data_queue.project_type);
 
                                     //3. Đẩy data từ DB lên ElasticSearch
                                     var bulkIndexResponse = elasticClient.Bulk(b => b
@@ -146,6 +148,7 @@ namespace JobSyncStoreToElasticSearch
                                           object idValue;
                                           if (item.TryGetValue("id", out idValue))  // Giả sử id được lưu với khóa "id"
                                           {
+                                              item.Add("project_type", projectTypeName);
                                               return descriptor.Id(idValue.ToString());
                                           }
                                           return descriptor;  // Nếu không có id, nó sẽ bỏ qua

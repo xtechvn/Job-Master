@@ -91,6 +91,29 @@ namespace JobSyncStoreToElasticSearch.DbWorker
             }
         }
 
+        public virtual string GetDataById(int id)
+        {
+            try
+            {
+                var db_worker = new DbWorker(connection);
+                var obj_table_result = new DataTable();
+                SqlParameter[] objParam = new SqlParameter[1];
+                objParam[0] = new SqlParameter("@account_id", id);
+
+                db_worker.Fill(obj_table_result, store_name, objParam);
+
+                if (obj_table_result.Rows.Count > 0)
+                {
+                    return JsonConvert.SerializeObject(obj_table_result, Formatting.Indented);
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
 
 
 
