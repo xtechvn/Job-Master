@@ -31,6 +31,22 @@ namespace JobSyncStoreToElasticSearch
         // Địa chỉ es để database sync lên
         public static string es_host_target = ConfigurationManager.AppSettings["es_master"];
 
+        // Hàm gửi thông báo Telegram
+        public static void SendMessageToTelegram(string token, string groupId, string message)
+        {
+            using (var client = new HttpClient())
+            {
+                var url = $"https://api.telegram.org/bot{token}/sendMessage";
+                var data = new Dictionary<string, string>
+        {
+            { "chat_id", groupId },
+            { "text", message }
+        };
+
+                client.PostAsync(url, new FormUrlEncodedContent(data)).Wait();
+            }
+        }
+
 
         static void Main(string[] args)
         {
@@ -86,6 +102,8 @@ namespace JobSyncStoreToElasticSearch
               //  }
 
 
+
+
                 #endregion
 
                 #region READ QUEUE
@@ -121,6 +139,10 @@ namespace JobSyncStoreToElasticSearch
                                 var message = Encoding.UTF8.GetString(body);
 
                                 Console.WriteLine("Receivice Data:" + message);
+
+                                // Gửi tin nhắn đến Telegram
+                                SendMessageToTelegram(tele_token, tele_group_id, "Received data: " + message);
+
 
                                 var obj_data_queue = JsonConvert.DeserializeObject<DataInfoModel>(message);
 
