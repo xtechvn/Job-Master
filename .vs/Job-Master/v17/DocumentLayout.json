@@ -3,40 +3,28 @@
   "WorkspaceRootPath": "D:\\Thuc_Tap_VnXpress\\Job-Master\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{42CD6B8A-8D56-43EA-AC50-B9FD82B09D12}|JobSyncStoreToElasticSearch\\JobSyncStoreToElasticSearch.csproj|d:\\thuc_tap_vnxpress\\job-master\\jobsyncstoretoelasticsearch\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{42CD6B8A-8D56-43EA-AC50-B9FD82B09D12}|JobSyncStoreToElasticSearch\\JobSyncStoreToElasticSearch.csproj|solutionrelative:jobsyncstoretoelasticsearch\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{42CD6B8A-8D56-43EA-AC50-B9FD82B09D12}|JobSyncStoreToElasticSearch\\JobSyncStoreToElasticSearch.csproj|d:\\thuc_tap_vnxpress\\job-master\\jobsyncstoretoelasticsearch\\dbworker\\storedatadal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{42CD6B8A-8D56-43EA-AC50-B9FD82B09D12}|JobSyncStoreToElasticSearch\\JobSyncStoreToElasticSearch.csproj|solutionrelative:jobsyncstoretoelasticsearch\\dbworker\\storedatadal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{42CD6B8A-8D56-43EA-AC50-B9FD82B09D12}|JobSyncStoreToElasticSearch\\JobSyncStoreToElasticSearch.csproj|d:\\thuc_tap_vnxpress\\job-master\\jobsyncstoretoelasticsearch\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{42CD6B8A-8D56-43EA-AC50-B9FD82B09D12}|JobSyncStoreToElasticSearch\\JobSyncStoreToElasticSearch.csproj|solutionrelative:jobsyncstoretoelasticsearch\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{42CD6B8A-8D56-43EA-AC50-B9FD82B09D12}|JobSyncStoreToElasticSearch\\JobSyncStoreToElasticSearch.csproj|d:\\thuc_tap_vnxpress\\job-master\\jobsyncstoretoelasticsearch\\dbworker\\dbworker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{42CD6B8A-8D56-43EA-AC50-B9FD82B09D12}|JobSyncStoreToElasticSearch\\JobSyncStoreToElasticSearch.csproj|solutionrelative:jobsyncstoretoelasticsearch\\dbworker\\dbworker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{42CD6B8A-8D56-43EA-AC50-B9FD82B09D12}|JobSyncStoreToElasticSearch\\JobSyncStoreToElasticSearch.csproj|d:\\thuc_tap_vnxpress\\job-master\\jobsyncstoretoelasticsearch\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{42CD6B8A-8D56-43EA-AC50-B9FD82B09D12}|JobSyncStoreToElasticSearch\\JobSyncStoreToElasticSearch.csproj|solutionrelative:jobsyncstoretoelasticsearch\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{42CD6B8A-8D56-43EA-AC50-B9FD82B09D12}|JobSyncStoreToElasticSearch\\JobSyncStoreToElasticSearch.csproj|d:\\thuc_tap_vnxpress\\job-master\\jobsyncstoretoelasticsearch\\dbworker\\basedatarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{42CD6B8A-8D56-43EA-AC50-B9FD82B09D12}|JobSyncStoreToElasticSearch\\JobSyncStoreToElasticSearch.csproj|solutionrelative:jobsyncstoretoelasticsearch\\dbworker\\basedatarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{42CD6B8A-8D56-43EA-AC50-B9FD82B09D12}|JobSyncStoreToElasticSearch\\JobSyncStoreToElasticSearch.csproj|d:\\thuc_tap_vnxpress\\job-master\\jobsyncstoretoelasticsearch\\dbworker\\hulotoys\\hulotoysrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{42CD6B8A-8D56-43EA-AC50-B9FD82B09D12}|JobSyncStoreToElasticSearch\\JobSyncStoreToElasticSearch.csproj|solutionrelative:jobsyncstoretoelasticsearch\\dbworker\\hulotoys\\hulotoysrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{42CD6B8A-8D56-43EA-AC50-B9FD82B09D12}|JobSyncStoreToElasticSearch\\JobSyncStoreToElasticSearch.csproj|d:\\thuc_tap_vnxpress\\job-master\\jobsyncstoretoelasticsearch\\models\\datainfomodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{42CD6B8A-8D56-43EA-AC50-B9FD82B09D12}|JobSyncStoreToElasticSearch\\JobSyncStoreToElasticSearch.csproj|solutionrelative:jobsyncstoretoelasticsearch\\models\\datainfomodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{42CD6B8A-8D56-43EA-AC50-B9FD82B09D12}|JobSyncStoreToElasticSearch\\JobSyncStoreToElasticSearch.csproj|d:\\thuc_tap_vnxpress\\job-master\\jobsyncstoretoelasticsearch\\constant\\projecttype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{42CD6B8A-8D56-43EA-AC50-B9FD82B09D12}|JobSyncStoreToElasticSearch\\JobSyncStoreToElasticSearch.csproj|solutionrelative:jobsyncstoretoelasticsearch\\constant\\projecttype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{42CD6B8A-8D56-43EA-AC50-B9FD82B09D12}|JobSyncStoreToElasticSearch\\JobSyncStoreToElasticSearch.csproj|d:\\thuc_tap_vnxpress\\job-master\\jobsyncstoretoelasticsearch\\dbworker\\dbworker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{42CD6B8A-8D56-43EA-AC50-B9FD82B09D12}|JobSyncStoreToElasticSearch\\JobSyncStoreToElasticSearch.csproj|solutionrelative:jobsyncstoretoelasticsearch\\dbworker\\dbworker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{42CD6B8A-8D56-43EA-AC50-B9FD82B09D12}|JobSyncStoreToElasticSearch\\JobSyncStoreToElasticSearch.csproj|d:\\thuc_tap_vnxpress\\job-master\\jobsyncstoretoelasticsearch\\dbworker\\biolife\\bioliferepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{42CD6B8A-8D56-43EA-AC50-B9FD82B09D12}|JobSyncStoreToElasticSearch\\JobSyncStoreToElasticSearch.csproj|solutionrelative:jobsyncstoretoelasticsearch\\dbworker\\biolife\\bioliferepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{42CD6B8A-8D56-43EA-AC50-B9FD82B09D12}|JobSyncStoreToElasticSearch\\JobSyncStoreToElasticSearch.csproj|d:\\thuc_tap_vnxpress\\job-master\\jobsyncstoretoelasticsearch\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{42CD6B8A-8D56-43EA-AC50-B9FD82B09D12}|JobSyncStoreToElasticSearch\\JobSyncStoreToElasticSearch.csproj|solutionrelative:jobsyncstoretoelasticsearch\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -46,7 +34,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 18,
+          "SelectedChildIndex": 16,
           "Children": [
             {
               "$type": "Bookmark",
@@ -78,10 +66,6 @@
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
-            {
-              "$type": "Bookmark",
               "Name": "ST:0:0:{0174dea2-fdbe-4ef1-8f99-c0beae78880f}"
             },
             {
@@ -102,7 +86,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "DbWorker.cs",
               "DocumentMoniker": "D:\\Thuc_Tap_VnXpress\\Job-Master\\JobSyncStoreToElasticSearch\\DbWorker\\DbWorker.cs",
               "RelativeDocumentMoniker": "JobSyncStoreToElasticSearch\\DbWorker\\DbWorker.cs",
@@ -114,101 +98,66 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "BaseDataRepository.cs",
-              "DocumentMoniker": "D:\\Thuc_Tap_VnXpress\\Job-Master\\JobSyncStoreToElasticSearch\\DbWorker\\BaseDataRepository.cs",
-              "RelativeDocumentMoniker": "JobSyncStoreToElasticSearch\\DbWorker\\BaseDataRepository.cs",
-              "ToolTip": "D:\\Thuc_Tap_VnXpress\\Job-Master\\JobSyncStoreToElasticSearch\\DbWorker\\BaseDataRepository.cs",
-              "RelativeToolTip": "JobSyncStoreToElasticSearch\\DbWorker\\BaseDataRepository.cs",
-              "ViewState": "AQIAAEoAAAAAAAAAAAAgwDQAAAAwAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-22T08:18:58.836Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "HulotoysRepository.cs",
-              "DocumentMoniker": "D:\\Thuc_Tap_VnXpress\\Job-Master\\JobSyncStoreToElasticSearch\\DbWorker\\Hulotoys\\HulotoysRepository.cs",
-              "RelativeDocumentMoniker": "JobSyncStoreToElasticSearch\\DbWorker\\Hulotoys\\HulotoysRepository.cs",
-              "ToolTip": "D:\\Thuc_Tap_VnXpress\\Job-Master\\JobSyncStoreToElasticSearch\\DbWorker\\Hulotoys\\HulotoysRepository.cs",
-              "RelativeToolTip": "JobSyncStoreToElasticSearch\\DbWorker\\Hulotoys\\HulotoysRepository.cs",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAAAA8AAAAGAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-22T08:07:21.582Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 3,
               "Title": "DataInfoModel.cs",
               "DocumentMoniker": "D:\\Thuc_Tap_VnXpress\\Job-Master\\JobSyncStoreToElasticSearch\\Models\\DataInfoModel.cs",
               "RelativeDocumentMoniker": "JobSyncStoreToElasticSearch\\Models\\DataInfoModel.cs",
               "ToolTip": "D:\\Thuc_Tap_VnXpress\\Job-Master\\JobSyncStoreToElasticSearch\\Models\\DataInfoModel.cs",
               "RelativeToolTip": "JobSyncStoreToElasticSearch\\Models\\DataInfoModel.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAuwAYAAAASAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAuwAYAAAAfAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-22T07:30:03.255Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\Thuc_Tap_VnXpress\\Job-Master\\JobSyncStoreToElasticSearch\\Program.cs",
               "RelativeDocumentMoniker": "JobSyncStoreToElasticSearch\\Program.cs",
               "ToolTip": "D:\\Thuc_Tap_VnXpress\\Job-Master\\JobSyncStoreToElasticSearch\\Program.cs",
               "RelativeToolTip": "JobSyncStoreToElasticSearch\\Program.cs",
-              "ViewState": "AQIAAA4AAAAAAAAAAAAkwCYAAABLAAAA",
+              "ViewState": "AQIAALwAAAAAAAAAAAAAwJsAAAAgAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-29T10:11:30.323Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "App.config",
               "DocumentMoniker": "D:\\Thuc_Tap_VnXpress\\Job-Master\\JobSyncStoreToElasticSearch\\App.config",
               "RelativeDocumentMoniker": "JobSyncStoreToElasticSearch\\App.config",
               "ToolTip": "D:\\Thuc_Tap_VnXpress\\Job-Master\\JobSyncStoreToElasticSearch\\App.config",
               "RelativeToolTip": "JobSyncStoreToElasticSearch\\App.config",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAAAQAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAcAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
               "WhenOpened": "2024-09-24T09:45:09.994Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "StoreDataDAL.cs",
               "DocumentMoniker": "D:\\Thuc_Tap_VnXpress\\Job-Master\\JobSyncStoreToElasticSearch\\DbWorker\\StoreDataDAL.cs",
               "RelativeDocumentMoniker": "JobSyncStoreToElasticSearch\\DbWorker\\StoreDataDAL.cs",
               "ToolTip": "D:\\Thuc_Tap_VnXpress\\Job-Master\\JobSyncStoreToElasticSearch\\DbWorker\\StoreDataDAL.cs",
               "RelativeToolTip": "JobSyncStoreToElasticSearch\\DbWorker\\StoreDataDAL.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAIAAAA",
+              "ViewState": "AQIAAI0AAAAAAAAAAAAUwKIAAABAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-24T07:35:42.43Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "ProjectType.cs",
-              "DocumentMoniker": "D:\\Thuc_Tap_VnXpress\\Job-Master\\JobSyncStoreToElasticSearch\\Constant\\ProjectType.cs",
-              "RelativeDocumentMoniker": "JobSyncStoreToElasticSearch\\Constant\\ProjectType.cs",
-              "ToolTip": "D:\\Thuc_Tap_VnXpress\\Job-Master\\JobSyncStoreToElasticSearch\\Constant\\ProjectType.cs",
-              "RelativeToolTip": "JobSyncStoreToElasticSearch\\Constant\\ProjectType.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAlAAAA",
+              "DocumentIndex": 2,
+              "Title": "BaseDataRepository.cs",
+              "DocumentMoniker": "D:\\Thuc_Tap_VnXpress\\Job-Master\\JobSyncStoreToElasticSearch\\DbWorker\\BaseDataRepository.cs",
+              "RelativeDocumentMoniker": "JobSyncStoreToElasticSearch\\DbWorker\\BaseDataRepository.cs",
+              "ToolTip": "D:\\Thuc_Tap_VnXpress\\Job-Master\\JobSyncStoreToElasticSearch\\DbWorker\\BaseDataRepository.cs",
+              "RelativeToolTip": "JobSyncStoreToElasticSearch\\DbWorker\\BaseDataRepository.cs",
+              "ViewState": "AQIAAGcAAAAAAAAAAAAtwHQAAAAwAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-22T03:08:32.72Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "BiolifeRepository.cs",
-              "DocumentMoniker": "D:\\Thuc_Tap_VnXpress\\Job-Master\\JobSyncStoreToElasticSearch\\DbWorker\\Biolife\\BiolifeRepository.cs",
-              "RelativeDocumentMoniker": "JobSyncStoreToElasticSearch\\DbWorker\\Biolife\\BiolifeRepository.cs",
-              "ToolTip": "D:\\Thuc_Tap_VnXpress\\Job-Master\\JobSyncStoreToElasticSearch\\DbWorker\\Biolife\\BiolifeRepository.cs",
-              "RelativeToolTip": "JobSyncStoreToElasticSearch\\DbWorker\\Biolife\\BiolifeRepository.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-22T08:07:13.432Z"
+              "WhenOpened": "2024-10-22T08:18:58.836Z",
+              "EditorCaption": ""
             }
           ]
         }

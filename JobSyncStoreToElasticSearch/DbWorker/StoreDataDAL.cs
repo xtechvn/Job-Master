@@ -55,15 +55,67 @@ namespace JobSyncStoreToElasticSearch.DbWorker
                         switch (obj_data.store_name)
                         {
                             case "SP_GetAllArticle":
-                                json_data_source = data_hulotoys.getAllArticle(Convert.ToInt32(obj_data.id));
-                                break;
-                            case "SP_GetProvinces":
                                 json_data_source = data_hulotoys.GetDataById(Convert.ToInt32(obj_data.id));
                                 break;
-                            case "SP_GetDistricts":
+                           
+                            case "SP_GetGroupProduct":
                                 json_data_source = data_hulotoys.GetDataById(Convert.ToInt32(obj_data.id));
                                 break;
-                            case "SP_GetWards":
+                            case "SP_GetAccountClient":
+                                json_data_source = data_hulotoys.GetDataById(Convert.ToInt32(obj_data.id));
+                                break;
+                            case "SP_GetClient":
+                                json_data_source = data_hulotoys.GetDataById(Convert.ToInt32(obj_data.id));
+                                break;
+                            case "SP_GetOrder":
+                                json_data_source = data_hulotoys.GetDataById(Convert.ToInt32(obj_data.id));
+                                break;
+                            case "SP_GetAccountAccessApi":
+                                json_data_source = data_hulotoys.GetDataById(Convert.ToInt32(obj_data.id));
+                                break;
+                            case "SP_GetArticle":
+                                json_data_source = data_hulotoys.GetDataById(Convert.ToInt32(obj_data.id));
+                                break;
+                            case "SP_GetArticleCategory":
+                                json_data_source = data_hulotoys.GetDataById(Convert.ToInt32(obj_data.id));
+                                break;
+                            case "SP_GetArticleRelated":
+                                json_data_source = data_hulotoys.GetDataById(Convert.ToInt32(obj_data.id));
+                                break;
+                            case "SP_GetTag":
+                                json_data_source = data_hulotoys.GetDataById(Convert.ToInt32(obj_data.id));
+                                break;
+                            case "SP_GetLocationProduct":
+                                json_data_source = data_hulotoys.GetDataById(Convert.ToInt32(obj_data.id));
+                                break;
+                            case "SP_GetUser":
+                                json_data_source = data_hulotoys.GetDataById(Convert.ToInt32(obj_data.id));
+                                break;
+                            case "SP_GetAddressClient":
+                                json_data_source = data_hulotoys.GetDataById(Convert.ToInt32(obj_data.id));
+                                break;
+                            case "SP_GetProvince":
+                                json_data_source = data_hulotoys.GetDataById(Convert.ToInt32(obj_data.id));
+                                break;
+                            case "SP_GetDistrict":
+                                json_data_source = data_hulotoys.GetDataById(Convert.ToInt32(obj_data.id));
+                                break;
+                            case "SP_GetWard":
+                                json_data_source = data_hulotoys.GetDataById(Convert.ToInt32(obj_data.id));
+                                break;
+                            case "SP_GetOrderDetail":
+                                json_data_source = data_hulotoys.GetDataById(Convert.ToInt32(obj_data.id));
+                                break;
+                            case "SP_GetRating":
+                                json_data_source = data_hulotoys.GetDataById(Convert.ToInt32(obj_data.id));
+                                break;
+                            case "SP_GetAccountAccessAPIPermission":
+                                json_data_source = data_hulotoys.GetDataById(Convert.ToInt32(obj_data.id));
+                                break;
+                            case "sp_getOrderDetail":
+                                json_data_source = data_hulotoys.GetDataById(Convert.ToInt32(obj_data.id));
+                                break;
+                            case "SP_GetArticleTagData":
                                 json_data_source = data_hulotoys.GetDataById(Convert.ToInt32(obj_data.id));
                                 break;
 
@@ -72,10 +124,67 @@ namespace JobSyncStoreToElasticSearch.DbWorker
                         }
 
                         break;
-
                     case ProjectType.ADAVIGO_CMS:
+                        connection_source = ConfigurationManager.AppSettings["database_adavigo"].ToString(); // Chuỗi connect tới Database                             
+                        es_host_target = ConfigurationManager.AppSettings["es_master"].ToString();  // dia chi es để tranfer data
+
+                        // Connect lấy data
+                        var data_adavigo = new BiolifeRepository(connection_source, obj_data.store_name);
+
+                        switch (obj_data.store_name)
+                        {
+                            case "sp_GetPrograms":
+                                json_data_source = data_adavigo.GetDataByIdAdavigo(Convert.ToInt32(obj_data.id));
+                                break;
+                            case "sp_GetUser":
+                                json_data_source = data_adavigo.GetDataByIdAdavigo(Convert.ToInt32(obj_data.id));
+                                break;
+
+                            case "sp_GetClient":
+                                json_data_source = data_adavigo.GetDataByIdAdavigo(Convert.ToInt32(obj_data.id));
+                                break;
+
+                            case "sp_GetOrder":
+                                json_data_source = data_adavigo.GetDataByIdAdavigo(Convert.ToInt32(obj_data.id));
+                                break;
+
+                            case "sp_GetHotel":
+                                json_data_source = data_adavigo.GetDataByIdAdavigo(Convert.ToInt32(obj_data.id));
+                                break;
+
+                            case "sp_GetHotelBooking":
+                                json_data_source = data_adavigo.GetDataByIdAdavigo(Convert.ToInt32(obj_data.id));
+                                break;
+
+                            case "sp_GetNational":
+                                json_data_source = data_adavigo.GetDataByIdAdavigo(Convert.ToInt32(obj_data.id));
+                                break;
+
+                            case "SP_GetDetailFlyBookingDetail":
+                                json_data_source = data_adavigo.GetDataByIdAdavigo(Convert.ToInt32(obj_data.id));
+                                break;
+
+                            case "sp_GetArticle":
+                                json_data_source = data_adavigo.GetDataByIdAdavigo(Convert.ToInt32(obj_data.id));
+                                break;
+
+                            case "sp_GetTour":
+                                json_data_source = data_adavigo.GetDataByIdAdavigo(Convert.ToInt32(obj_data.id));
+                                break;
+
+                            case "sp_GetHotelBookingCode":
+                                json_data_source = data_adavigo.GetDataByIdAdavigo(Convert.ToInt32(obj_data.id));
+                                break;
+
+                            default:
+                                break;
+                        }
+
 
                         break;
+
+
+
 
                     case ProjectType.HOANBDS:
                         connection_source = ConfigurationManager.AppSettings["database_hoanbds"].ToString(); // Chuỗi connect tới Database                             
