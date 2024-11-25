@@ -97,8 +97,7 @@
               "RelativeToolTip": "JobSyncStoreToElasticSearch\\App.config",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAnAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
-              "WhenOpened": "2024-11-25T07:29:56.834Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-25T07:29:56.834Z"
             },
             {
               "$type": "Document",
@@ -120,8 +119,7 @@
               "RelativeToolTip": "JobSyncStoreToElasticSearch\\Program.cs",
               "ViewState": "AQIAAJsAAAAAAAAAAAAowKkAAAA5AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-29T10:11:30.323Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-29T10:11:30.323Z"
             },
             {
               "$type": "Document",
@@ -133,8 +131,7 @@
               "RelativeToolTip": "JobSyncStoreToElasticSearch\\DbWorker\\DbWorker.cs",
               "ViewState": "AQIAAAMAAAAAAAAAAAAAABEAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-24T07:40:24.543Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-24T07:40:24.543Z"
             },
             {
               "$type": "Document",
@@ -156,7 +153,7 @@
               "RelativeDocumentMoniker": "JobSyncStoreToElasticSearch\\DbWorker\\StoreDataDAL.cs",
               "ToolTip": "D:\\Thuc_Tap_VnXpress\\Job-Master\\JobSyncStoreToElasticSearch\\DbWorker\\StoreDataDAL.cs",
               "RelativeToolTip": "JobSyncStoreToElasticSearch\\DbWorker\\StoreDataDAL.cs",
-              "ViewState": "AQIAAIIAAAAAAAAAAAAgwIwAAAAmAAAA",
+              "ViewState": "AQIAAIIAAAAAAAAAAAAEwI0AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-24T07:35:42.43Z",
               "EditorCaption": ""
@@ -171,8 +168,7 @@
               "RelativeToolTip": "JobSyncStoreToElasticSearch\\DbWorker\\BaseDataRepository.cs",
               "ViewState": "AQIAAF4AAAAAAAAAAAAEwHQAAAAwAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-22T08:18:58.836Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-22T08:18:58.836Z"
             }
           ]
         }

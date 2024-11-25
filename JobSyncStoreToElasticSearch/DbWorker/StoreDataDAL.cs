@@ -64,7 +64,7 @@ namespace JobSyncStoreToElasticSearch.DbWorker
                             case "SP_GetAccountClient":
                                 json_data_source = data_hulotoys.GetDataById(Convert.ToInt32(obj_data.id));
                                 break;
-                            case "SP_GetClient":
+                            case "sp_GetClient":
                                 json_data_source = data_hulotoys.GetDataById(Convert.ToInt32(obj_data.id));
                                 break;
                             case "SP_GetOrder":
@@ -140,7 +140,7 @@ namespace JobSyncStoreToElasticSearch.DbWorker
                                 json_data_source = data_adavigo.GetDataByIdAdavigo(Convert.ToInt32(obj_data.id));
                                 break;
 
-                            case "SP_GetClient":
+                            case "sp_GetClient":
                                 json_data_source = data_adavigo.GetDataByIdAdavigo(Convert.ToInt32(obj_data.id));
                                 break;
 
@@ -168,7 +168,7 @@ namespace JobSyncStoreToElasticSearch.DbWorker
                                 json_data_source = data_adavigo.GetDataByIdAdavigo(Convert.ToInt32(obj_data.id));
                                 break;
 
-                            case "SP_GetTour":
+                            case "sp_GetTour":
                                 json_data_source = data_adavigo.GetDataByIdAdavigo(Convert.ToInt32(obj_data.id));
                                 break;
 
