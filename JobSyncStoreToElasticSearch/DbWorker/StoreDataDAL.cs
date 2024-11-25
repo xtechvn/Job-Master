@@ -168,11 +168,14 @@ namespace JobSyncStoreToElasticSearch.DbWorker
                                 json_data_source = data_adavigo.GetDataByIdAdavigo(Convert.ToInt32(obj_data.id));
                                 break;
 
-                            case "sp_GetTour":
-                                json_data_source = data_adavigo.GetDataByIdAdavigo(Convert.ToInt32(obj_data.id));
-                                break;
+                            //case "sp_GetTour":
+                            //    json_data_source = data_adavigo.GetDataByIdAdavigo(Convert.ToInt32(obj_data.id));
+                            //    break;
 
                             case "sp_GetHotelBookingCode":
+                                json_data_source = data_adavigo.GetDataByIdAdavigo(Convert.ToInt32(obj_data.id));
+                                break;
+                            case "SP_GetContract":
                                 json_data_source = data_adavigo.GetDataByIdAdavigo(Convert.ToInt32(obj_data.id));
                                 break;
 
