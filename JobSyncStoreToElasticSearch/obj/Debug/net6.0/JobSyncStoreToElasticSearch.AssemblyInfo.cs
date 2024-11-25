@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("JobSyncStoreToElasticSearch")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2d25d0c33bc1d071c1a42895b375373b8d35233c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6ba1d54325bd8cbc8c7d4b7e16245b9dd0163353")]
 [assembly: System.Reflection.AssemblyProductAttribute("JobSyncStoreToElasticSearch")]
 [assembly: System.Reflection.AssemblyTitleAttribute("JobSyncStoreToElasticSearch")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

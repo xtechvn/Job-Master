@@ -135,70 +135,109 @@ namespace JobSyncStoreToElasticSearch
                         {
                             try
                             {
+                                // Lấy dữ liệu từ message
                                 var body = ea.Body.ToArray();
                                 var message = Encoding.UTF8.GetString(body);
 
-                                Console.WriteLine("Receivice Data:" + message);
+                                // Log message nhận được từ queue
+                                Console.WriteLine($"[Log] Received message: {message}");
 
-                                // Gửi tin nhắn đến Telegram
-                                SendMessageToTelegram(tele_token, tele_group_id, "Received data: " + message);
+                                // Deserialize dữ liệu nhận được
+                                DataInfoModel obj_data_queue = null;
+                                try
+                                {
+                                    obj_data_queue = JsonConvert.DeserializeObject<DataInfoModel>(message);
+                                }
+                                catch (Exception ex)
+                                {
+                                    Console.WriteLine($"[Error] Failed to deserialize message: {ex.Message}");
+                                    SendMessageToTelegram(tele_token, tele_group_id, $"[Error] Failed to deserialize message: {ex.Message}");
+                                    // Gửi ACK để bỏ qua message không hợp lệ
+                                    channel.BasicAck(deliveryTag: ea.DeliveryTag, multiple: false);
+                                    return; // Bỏ qua và xử lý message tiếp theo
+                                }
 
-
-                                var obj_data_queue = JsonConvert.DeserializeObject<DataInfoModel>(message);
-
-                                //1. Lấy kết quả từ database đổ về
+                                // 1. Lấy kết quả từ database đổ về
                                 var obj_config_info = StoreDataDAL.getDataFromStore(obj_data_queue);
 
+                                if (obj_config_info == null || string.IsNullOrEmpty(obj_config_info.data_source))
+                                {
+                                    Console.WriteLine("[Warning] No data returned from database or data source is empty.");
+                                    SendMessageToTelegram(tele_token, tele_group_id, "[Warning] No data returned from database or data source is empty.");
+                                    // Gửi ACK để bỏ qua message không xử lý được
+                                    channel.BasicAck(deliveryTag: ea.DeliveryTag, multiple: false);
+                                    return;
+                                }
 
-                                //2. Kết nối tới ES
+                                // Log dữ liệu nguồn
+                                Console.WriteLine($"[Log] Data Source: {obj_config_info.data_source}");
+
+                                // 2. Kết nối tới Elasticsearch
                                 var nodes = new Uri[] { new Uri(obj_config_info.es_host_target) };
                                 var connectionPool = new StaticConnectionPool(nodes);
                                 var connectionSettings = new ConnectionSettings(connectionPool).DisableDirectStreaming().DefaultIndex(obj_config_info.index_node);
+
                                 var elasticClient = new ElasticClient(connectionSettings);
 
-                                if (obj_config_info != null)
+                                // Parse dữ liệu từ data_source
+                                List<Dictionary<string, object>> dataList = null;
+                                try
                                 {
-                                    var dataList = JsonConvert.DeserializeObject<List<Dictionary<string, object>>>(obj_config_info.data_source);
-                                    var projectTypeName = ProjectType.GetProjectTypeName(obj_data_queue.project_type);
-
-                                    //3. Đẩy data từ DB lên ElasticSearch
-                                    var bulkIndexResponse = elasticClient.Bulk(b => b
-                                      .Index(obj_config_info.index_node)
-                                      .IndexMany(dataList, (descriptor, item) =>
-                                      {
-                                          // Lấy id từ từ điển
-                                          object idValue;
-                                          if (item.TryGetValue("id", out idValue))  // Giả sử id được lưu với khóa "id"
-                                          {
-                                              item.Add("project_type", projectTypeName);
-                                              return descriptor.Id(idValue.ToString());
-                                          }
-                                          return descriptor;  // Nếu không có id, nó sẽ bỏ qua
-                                      })
-                                  );
-                                    // Kiểm tra kết quả trả về
-                                    if (bulkIndexResponse.Errors)
-                                    {
-                                        foreach (var item in bulkIndexResponse.ItemsWithErrors)
-                                        {
-                                            Console.WriteLine($"Failed to index document {item.Id}: {item.Error}");
-                                        }
-                                    }
-                                    else
-                                    {
-                                        Console.WriteLine("All documents indexed successfully.");
-                                    }
-
+                                    dataList = JsonConvert.DeserializeObject<List<Dictionary<string, object>>>(obj_config_info.data_source);
+                                }
+                                catch (Exception ex)
+                                {
+                                    Console.WriteLine($"[Error] Failed to deserialize data source: {ex.Message}");
+                                    SendMessageToTelegram(tele_token, tele_group_id, $"[Error] Failed to deserialize data source: {ex.Message}");
+                                    // Gửi ACK để bỏ qua message lỗi
+                                    channel.BasicAck(deliveryTag: ea.DeliveryTag, multiple: false);
+                                    return;
                                 }
 
+                                // Log danh sách dữ liệu
+                                //Console.WriteLine($"[Log] Data List: {JsonConvert.SerializeObject(dataList)}");
+
+                                // 3. Đẩy dữ liệu lên Elasticsearch
+                                var bulkIndexResponse = elasticClient.Bulk(b => b
+                                    .Index(obj_config_info.index_node)
+                                    .IndexMany(dataList, (descriptor, item) =>
+                                    {
+                                        object idValue;
+                                        if (item.TryGetValue("id", out idValue)) // Hoặc thay "id" bằng "OrderId"
+                                        {
+                                            return descriptor.Id(idValue.ToString());
+                                        }
+                                        return descriptor;
+                                    })
+                                );
+
+                                // Kiểm tra kết quả trả về từ Elasticsearch
+                                if (bulkIndexResponse.Errors)
+                                {
+                                    foreach (var item in bulkIndexResponse.ItemsWithErrors)
+                                    {
+                                        Console.WriteLine($"[Error] Failed to index document {item.Id}: {item.Error}");
+                                    }
+                                    SendMessageToTelegram(tele_token, tele_group_id, "[Error] Some documents failed to index.");
+                                }
+                                else
+                                {
+                                    Console.WriteLine("[Success] All documents indexed successfully.");
+                                }
+
+                                // Gửi ACK khi xử lý thành công
                                 channel.BasicAck(deliveryTag: ea.DeliveryTag, multiple: false);
                             }
                             catch (Exception ex)
                             {
-                                Console.WriteLine("error queue: " + ex.ToString());
-                                ErrorWriter.InsertLogTelegramByUrl(tele_token, tele_group_id, "error queue = " + ex.ToString());
+                                Console.WriteLine($"[Error] Exception while processing message: {ex.Message}");
+                                SendMessageToTelegram(tele_token, tele_group_id, $"[Error] Exception while processing message: {ex.Message}");
+
+                                // Gửi ACK hoặc NACK để RabbitMQ không giữ message trong hàng đợi mãi
+                                channel.BasicAck(deliveryTag: ea.DeliveryTag, multiple: false);
                             }
                         };
+
 
                         channel.BasicConsume(queue: QUEUE_NAME, autoAck: false, consumer: consumer);
 
