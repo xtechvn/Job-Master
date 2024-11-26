@@ -185,7 +185,67 @@ namespace JobSyncStoreToElasticSearch.DbWorker
 
 
                         break;
+                    case ProjectType.ADAVIGO_CMS_PHUQUOC:
+                        connection_source = ConfigurationManager.AppSettings["database_adavigo_phuquoc"].ToString(); // Chuỗi connect tới Database                             
+                        es_host_target = ConfigurationManager.AppSettings["es_master"].ToString();  // dia chi es để tranfer data
 
+                        // Connect lấy data
+                        var data_adavigo_phuquoc = new BiolifeRepository(connection_source, obj_data.store_name);
+
+                        switch (obj_data.store_name)
+                        {
+                            case "sp_GetPrograms":
+                                json_data_source = data_adavigo_phuquoc.GetDataByIdAdavigo(Convert.ToInt32(obj_data.id));
+                                break;
+                            case "sp_GetUser":
+                                json_data_source = data_adavigo_phuquoc.GetDataByIdAdavigo(Convert.ToInt32(obj_data.id));
+                                break;
+
+                            case "sp_GetClient":
+                                json_data_source = data_adavigo_phuquoc.GetDataByIdAdavigo(Convert.ToInt32(obj_data.id));
+                                break;
+
+                            case "sp_GetOrder":
+                                json_data_source = data_adavigo_phuquoc.GetDataByIdAdavigo(Convert.ToInt32(obj_data.id));
+                                break;
+
+                            case "sp_GetHotel":
+                                json_data_source = data_adavigo_phuquoc.GetDataByIdAdavigo(Convert.ToInt32(obj_data.id));
+                                break;
+
+                            case "sp_GetHotelBooking":
+                                json_data_source = data_adavigo_phuquoc.GetDataByIdAdavigo(Convert.ToInt32(obj_data.id));
+                                break;
+
+                            case "sp_GetNational":
+                                json_data_source = data_adavigo_phuquoc.GetDataByIdAdavigo(Convert.ToInt32(obj_data.id));
+                                break;
+
+                            case "SP_GetDetailFlyBookingDetail":
+                                json_data_source = data_adavigo_phuquoc.GetDataByIdAdavigo(Convert.ToInt32(obj_data.id));
+                                break;
+
+                            case "sp_GetArticle":
+                                json_data_source = data_adavigo_phuquoc.GetDataByIdAdavigo(Convert.ToInt32(obj_data.id));
+                                break;
+
+                            case "sp_GetTour":
+                                json_data_source = data_adavigo_phuquoc.GetDataByIdAdavigo(Convert.ToInt32(obj_data.id));
+                                break;
+
+                            case "sp_GetHotelBookingCode":
+                                json_data_source = data_adavigo_phuquoc.GetDataByIdAdavigo(Convert.ToInt32(obj_data.id));
+                                break;
+                            case "SP_GetContract":
+                                json_data_source = data_adavigo_phuquoc.GetDataByIdAdavigo(Convert.ToInt32(obj_data.id));
+                                break;
+
+                            default:
+                                break;
+                        }
+
+
+                        break;
 
 
 
