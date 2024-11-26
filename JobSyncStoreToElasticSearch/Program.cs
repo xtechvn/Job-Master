@@ -37,7 +37,7 @@ namespace JobSyncStoreToElasticSearch
                         { "text", message }
                     };
 
-                    Console.WriteLine($"[Log] Sending message to Telegram: {message}");
+                    //Console.WriteLine($"[Log] Sending message to Telegram: {message}");
                     var response = client.PostAsync(url, new FormUrlEncodedContent(data)).Result;
 
                    
