@@ -40,15 +40,8 @@ namespace JobSyncStoreToElasticSearch
                     Console.WriteLine($"[Log] Sending message to Telegram: {message}");
                     var response = client.PostAsync(url, new FormUrlEncodedContent(data)).Result;
 
-                    if (!response.IsSuccessStatusCode)
-                    {
-                        Console.WriteLine($"[Error] Failed to send Telegram message. Status: {response.StatusCode}");
-                        //Console.WriteLine($"[Error] Response: {response.Content.ReadAsStringAsync().Result}");
-                    }
-                    else
-                    {
-                        Console.WriteLine($"[Success] Telegram message sent successfully.");
-                    }
+                   
+                   
                 }
             }
             catch (Exception ex)
@@ -90,7 +83,8 @@ namespace JobSyncStoreToElasticSearch
                         {
                             var body = ea.Body.ToArray();
                             var message = Encoding.UTF8.GetString(body);
-
+                            Console.WriteLine("-----------------------------------------------------------------------------");
+                            Console.WriteLine($"[TIME] {DateTime.Now}");
                             Console.WriteLine($"[Log] Received message: {message}");
                             SendMessageToTelegram(tele_token, tele_group_id, $"[Log] Received data: {message}");
 
@@ -101,6 +95,8 @@ namespace JobSyncStoreToElasticSearch
                             }
                             catch (Exception ex)
                             {
+                                Console.WriteLine("-----------------------------------------------------------------------------");
+                                Console.WriteLine($"[TIME] {DateTime.Now}");
                                 Console.WriteLine($"[Error] Failed to deserialize message: {ex.Message}");
                                 SendMessageToTelegram(tele_token, tele_group_id, $"[Error] Failed to deserialize message: {ex.Message}");
                                 channel.BasicAck(deliveryTag: ea.DeliveryTag, multiple: false);
