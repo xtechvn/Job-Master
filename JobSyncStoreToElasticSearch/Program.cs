@@ -40,8 +40,8 @@ namespace JobSyncStoreToElasticSearch
                     //Console.WriteLine($"[Log] Sending message to Telegram: {message}");
                     var response = client.PostAsync(url, new FormUrlEncodedContent(data)).Result;
 
-                   
-                   
+
+
                 }
             }
             catch (Exception ex)
@@ -136,17 +136,35 @@ namespace JobSyncStoreToElasticSearch
                             //Console.WriteLine($"[Log] Data List: {JsonConvert.SerializeObject(dataList)}");
 
                             var bulkIndexResponse = elasticClient.Bulk(b => b
-                                .Index(obj_config_info.index_node)
-                                .IndexMany(dataList, (descriptor, item) =>
+                            .Index(obj_config_info.index_node)
+                            .IndexMany(dataList, (descriptor, item) =>
+                            {
+                                object idValue = null;
+
+                                // Thử lấy ID từ nhiều khả năng
+                                string[] possibleIdKeys = { "ID", "id", "Id", "_id" };
+
+                                foreach (var key in possibleIdKeys)
                                 {
-                                    object idValue;
-                                    if (item.TryGetValue("id", out idValue))
+                                    if (item.TryGetValue(key, out idValue))
                                     {
-                                        return descriptor.Id(idValue.ToString());
+                                        // Log để kiểm tra (có thể bỏ đi khi chạy thực tế)
+                                        //Console.WriteLine($"Found ID using key: {key}, Value: {idValue}");
+                                        break;
                                     }
-                                    return descriptor;
-                                })
-                            );
+                                }
+
+                                // Nếu tìm thấy ID
+                                if (idValue != null)
+                                {
+                                    return descriptor.Id(idValue.ToString());
+                                }
+
+                                // Nếu không tìm thấy ID, trả về descriptor không thay đổi
+                                return descriptor;
+                            })
+                            .Index(obj_config_info.index_node)
+                        );
 
                             if (!bulkIndexResponse.Errors)
                             {

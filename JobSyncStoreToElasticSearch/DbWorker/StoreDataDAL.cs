@@ -64,7 +64,7 @@ namespace JobSyncStoreToElasticSearch.DbWorker
                             case "SP_GetAccountClient":
                                 json_data_source = data_hulotoys.GetDataById(Convert.ToInt32(obj_data.id));
                                 break;
-                            case "sp_GetClient":
+                            case "SP_GetClient":
                                 json_data_source = data_hulotoys.GetDataById(Convert.ToInt32(obj_data.id));
                                 break;
                             case "SP_GetOrder":
@@ -101,9 +101,6 @@ namespace JobSyncStoreToElasticSearch.DbWorker
                                 json_data_source = data_hulotoys.GetDataById(Convert.ToInt32(obj_data.id));
                                 break;
                             case "SP_GetWard":
-                                json_data_source = data_hulotoys.GetDataById(Convert.ToInt32(obj_data.id));
-                                break;
-                            case "SP_GetOrderDetail":
                                 json_data_source = data_hulotoys.GetDataById(Convert.ToInt32(obj_data.id));
                                 break;
                             case "SP_GetRating":
