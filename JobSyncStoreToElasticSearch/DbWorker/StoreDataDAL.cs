@@ -243,7 +243,72 @@ namespace JobSyncStoreToElasticSearch.DbWorker
 
 
                         break;
+                    case ProjectType.OCLOCK:
+                        connection_source = ConfigurationManager.AppSettings["database_oclock"].ToString(); // Chuỗi connect tới Database                             
+                        es_host_target = ConfigurationManager.AppSettings["es_master"].ToString();  // dia chi es để tranfer data
 
+                        // Connect lấy data
+                        var data_oclock = new HulotoysRepository(connection_source, obj_data.store_name);
+                        switch (obj_data.store_name)
+                        {
+                            case "SP_GetAllArticle":
+                                json_data_source = data_oclock.GetDataById(Convert.ToInt32(obj_data.id));
+                                break;
+
+                            case "SP_GetGroupProduct":
+                                json_data_source = data_oclock.GetDataById(Convert.ToInt32(obj_data.id));
+                                break;
+                            case "SP_GetAccountClient":
+                                json_data_source = data_oclock.GetDataById(Convert.ToInt32(obj_data.id));
+                                break;
+                            case "SP_GetClient":
+                                json_data_source = data_oclock.GetDataById(Convert.ToInt32(obj_data.id));
+                                break;
+                            case "SP_GetOrder":
+                                json_data_source = data_oclock.GetDataById(Convert.ToInt32(obj_data.id));
+                                break;
+                            case "SP_GetAccountAccessApi":
+                                json_data_source = data_oclock.GetDataById(Convert.ToInt32(obj_data.id));
+                                break;
+                            case "SP_GetArticle":
+                                json_data_source = data_oclock.GetDataById(Convert.ToInt32(obj_data.id));
+                                break;
+                            case "SP_GetArticleCategory":
+                                json_data_source = data_oclock.GetDataById(Convert.ToInt32(obj_data.id));
+                                break;
+                            case "SP_GetArticleRelated":
+                                json_data_source = data_oclock.GetDataById(Convert.ToInt32(obj_data.id));
+                                break;
+                            case "SP_GetTag":
+                                json_data_source = data_oclock.GetDataById(Convert.ToInt32(obj_data.id));
+                                break;
+                            case "SP_GetLocationProduct":
+                                json_data_source = data_oclock.GetDataById(Convert.ToInt32(obj_data.id));
+                                break;
+                            case "SP_GetUser":
+                                json_data_source = data_oclock.GetDataById(Convert.ToInt32(obj_data.id));
+                                break;
+                            case "SP_GetAddressClient":
+                                json_data_source = data_oclock.GetDataById(Convert.ToInt32(obj_data.id));
+                                break;
+                            case "SP_GetRating":
+                                json_data_source = data_oclock.GetDataById(Convert.ToInt32(obj_data.id));
+                                break;
+                            case "SP_GetAccountAccessAPIPermission":
+                                json_data_source = data_oclock.GetDataById(Convert.ToInt32(obj_data.id));
+                                break;
+                            case "sp_getOrderDetail":
+                                json_data_source = data_oclock.GetDataById(Convert.ToInt32(obj_data.id));
+                                break;
+                            case "SP_GetArticleTagData":
+                                json_data_source = data_oclock.GetDataById(Convert.ToInt32(obj_data.id));
+                                break;
+
+                            default:
+                                break;
+                        }
+
+                        break;
 
 
                     case ProjectType.HOANBDS:
