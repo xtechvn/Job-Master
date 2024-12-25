@@ -8,6 +8,7 @@
         public const int HOANBDS = 3;
         public const int ADAVIGO_CMS_PHUQUOC = 4;
         public const int OCLOCK = 5;
+        public const int EDUCATION = 6;
         
     }
 }
