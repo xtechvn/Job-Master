@@ -185,7 +185,26 @@ namespace JobSyncStoreToElasticSearch.DbWorker
 
 
                         break;
+                    case ProjectType.EDUCATION:
+                        connection_source = ConfigurationManager.AppSettings["database_education"].ToString(); // Chuỗi connect tới Database                             
+                        es_host_target = ConfigurationManager.AppSettings["es_master"].ToString();  // dia chi es để tranfer data
 
+                        // Connect lấy data
+                        var data_education = new BiolifeRepository(connection_source, obj_data.store_name);
+
+                        switch (obj_data.store_name)
+                        {
+                            case "SP_GetAllSource":
+                                json_data_source = data_education.GetDataByIdEducation(Convert.ToInt32(obj_data.id));
+                                break;
+
+
+                            default:
+                                break;
+                        }
+
+
+                        break;
 
 
 
