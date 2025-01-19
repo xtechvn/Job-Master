@@ -185,6 +185,7 @@ namespace JobSyncStoreToElasticSearch.DbWorker
 
 
                         break;
+
                     case ProjectType.EDUCATION:
                         connection_source = ConfigurationManager.AppSettings["database_education"].ToString(); // Chuỗi connect tới Database                             
                         es_host_target = ConfigurationManager.AppSettings["es_master"].ToString();  // dia chi es để tranfer data
@@ -197,7 +198,12 @@ namespace JobSyncStoreToElasticSearch.DbWorker
                             case "SP_GetAllSource":
                                 json_data_source = data_education.GetDataByIdEducation(Convert.ToInt32(obj_data.id));
                                 break;
-
+                            case "sp_getGroupProduct":
+                                json_data_source = data_education.GetDataByIdAdavigo(Convert.ToInt32(obj_data.id));
+                                break;
+                            case "SP_GetAllArticle":
+                                json_data_source = data_education.getAllArticle(Convert.ToInt32(obj_data.id));
+                                break;
 
                             default:
                                 break;
