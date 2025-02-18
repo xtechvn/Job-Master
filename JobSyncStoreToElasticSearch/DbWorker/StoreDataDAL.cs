@@ -321,7 +321,74 @@ namespace JobSyncStoreToElasticSearch.DbWorker
                             case "SP_GetAllSource":
                                 json_data_source = data_education.GetDataByIdEducation(Convert.ToInt32(obj_data.id));
                                 break;
-                            
+                            case "sp_getGroupProduct":
+                                json_data_source = data_education.GetDataByIdAdavigo(Convert.ToInt32(obj_data.id));
+                                break;
+                            case "SP_GetAllArticle":
+                                json_data_source = data_education.getAllArticle(Convert.ToInt32(obj_data.id));
+                                break;
+
+                            default:
+                                break;
+                        }
+
+
+                        break;
+
+                    case ProjectType.DEEPSEEK_CMS:
+                        connection_source = ConfigurationManager.AppSettings["database_deepseektravel"].ToString(); // Chuỗi connect tới Database                             
+                        es_host_target = ConfigurationManager.AppSettings["es_master"].ToString();  // dia chi es để tranfer data
+
+                        // Connect lấy data
+                        var database_deepseektravel = new BiolifeRepository(connection_source, obj_data.store_name);
+
+                        switch (obj_data.store_name)
+                        {
+                            case "sp_GetPrograms":
+                                json_data_source = database_deepseektravel.GetDataByIdAdavigo(Convert.ToInt32(obj_data.id));
+                                break;
+                            case "sp_GetUser":
+                                json_data_source = database_deepseektravel.GetDataByIdAdavigo(Convert.ToInt32(obj_data.id));
+                                break;
+
+                            case "sp_GetClient":
+                                json_data_source = database_deepseektravel.GetDataByIdAdavigo(Convert.ToInt32(obj_data.id));
+                                break;
+
+                            case "sp_GetOrder":
+                                json_data_source = database_deepseektravel.GetDataByIdAdavigo(Convert.ToInt32(obj_data.id));
+                                break;
+
+                            case "sp_GetHotel":
+                                json_data_source = database_deepseektravel.GetDataByIdAdavigo(Convert.ToInt32(obj_data.id));
+                                break;
+
+                            case "sp_GetHotelBooking":
+                                json_data_source = database_deepseektravel.GetDataByIdAdavigo(Convert.ToInt32(obj_data.id));
+                                break;
+
+                            case "sp_GetNational":
+                                json_data_source = database_deepseektravel.GetDataByIdAdavigo(Convert.ToInt32(obj_data.id));
+                                break;
+
+                            case "SP_GetDetailFlyBookingDetail":
+                                json_data_source = database_deepseektravel.GetDataByIdAdavigo(Convert.ToInt32(obj_data.id));
+                                break;
+
+                            case "sp_GetArticle":
+                                json_data_source = database_deepseektravel.GetDataByIdAdavigo(Convert.ToInt32(obj_data.id));
+                                break;
+
+                            case "sp_GetTour":
+                                json_data_source = database_deepseektravel.GetDataByIdAdavigo(Convert.ToInt32(obj_data.id));
+                                break;
+
+                            case "sp_GetHotelBookingCode":
+                                json_data_source = database_deepseektravel.GetDataByIdAdavigo(Convert.ToInt32(obj_data.id));
+                                break;
+                            case "SP_GetContract":
+                                json_data_source = database_deepseektravel.GetDataByIdAdavigo(Convert.ToInt32(obj_data.id));
+                                break;
 
                             default:
                                 break;
