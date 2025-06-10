@@ -493,6 +493,16 @@ namespace JobSyncStoreToElasticSearch.DbWorker
                                 json_data_source = data_omoris.GetDataById(Convert.ToInt32(obj_data.id));
                                 break;
 
+                            case "SP_GetListProvinces":
+                                json_data_source = data_omoris.GetDataById(Convert.ToInt32(obj_data.id));
+                                break;
+                            case "SP_GetListDistrict":
+                                json_data_source = data_omoris.GetDataById(Convert.ToInt32(obj_data.id));
+                                break;
+                            case "SP_GetListWard":
+                                json_data_source = data_omoris.GetDataById(Convert.ToInt32(obj_data.id));
+                                break;
+
                             default:
                                 break;
                         }
