@@ -420,6 +420,84 @@ namespace JobSyncStoreToElasticSearch.DbWorker
                         }
 
                         break;
+                    case ProjectType.OMORI:
+                        connection_source = ConfigurationManager.AppSettings["database_omori"].ToString(); // Chuỗi connect tới Database                             
+                        es_host_target = ConfigurationManager.AppSettings["es_master"].ToString();  // dia chi es để tranfer data
+
+                        // Connect lấy data
+                        var data_omoris = new HulotoysRepository(connection_source, obj_data.store_name);
+                        switch (obj_data.store_name)
+                        {
+                            case "SP_GetAllArticle":
+                                json_data_source = data_omoris.getAllArticle(Convert.ToInt32(obj_data.id));
+                                break;
+
+                            case "SP_GetGroupProduct":
+                                json_data_source = data_omoris.getAllGroupProduct(Convert.ToInt32(obj_data.id));
+                                break;
+                            case "SP_GetAccountClient":
+                                json_data_source = data_omoris.GetDataById(Convert.ToInt32(obj_data.id));
+                                break;
+                            case "sp_GetClient":
+                                json_data_source = data_omoris.GetDataById(Convert.ToInt32(obj_data.id));
+                                break;
+                            case "SP_GetOrder":
+                                json_data_source = data_omoris.GetDataById(Convert.ToInt32(obj_data.id));
+                                break;
+                            case "SP_GetAccountAccess":
+                                json_data_source = data_omoris.getAllAccountAccess(Convert.ToInt32(obj_data.id));
+                                break;
+                            case "SP_GetArticle":
+                                json_data_source = data_omoris.GetDataById(Convert.ToInt32(obj_data.id));
+                                break;
+                            case "SP_GetArticleCategory":
+                                json_data_source = data_omoris.GetDataById(Convert.ToInt32(obj_data.id));
+                                break;
+                            case "SP_GetArticleRelated":
+                                json_data_source = data_omoris.GetDataById(Convert.ToInt32(obj_data.id));
+                                break;
+                            case "SP_GetTag":
+                                json_data_source = data_omoris.GetDataById(Convert.ToInt32(obj_data.id));
+                                break;
+                            case "SP_GetLocationProduct":
+                                json_data_source = data_omoris.GetDataById(Convert.ToInt32(obj_data.id));
+                                break;
+                            case "SP_GetUser":
+                                json_data_source = data_omoris.GetDataById(Convert.ToInt32(obj_data.id));
+                                break;
+                            case "SP_GetAddressClient":
+                                json_data_source = data_omoris.GetDataById(Convert.ToInt32(obj_data.id));
+                                break;
+                            case "SP_GetProvince":
+                                json_data_source = data_omoris.GetDataById(Convert.ToInt32(obj_data.id));
+                                break;
+                            case "SP_GetDistrict":
+                                json_data_source = data_omoris.GetDataById(Convert.ToInt32(obj_data.id));
+                                break;
+                            case "SP_GetWard":
+                                json_data_source = data_omoris.GetDataById(Convert.ToInt32(obj_data.id));
+                                break;
+                            case "SP_GetOrderDetail":
+                                json_data_source = data_omoris.GetDataById(Convert.ToInt32(obj_data.id));
+                                break;
+                            case "SP_GetRating":
+                                json_data_source = data_omoris.GetDataById(Convert.ToInt32(obj_data.id));
+                                break;
+                            case "SP_GetAccountAccessAPIPermission":
+                                json_data_source = data_omoris.GetDataById(Convert.ToInt32(obj_data.id));
+                                break;
+                            case "sp_getOrderDetail":
+                                json_data_source = data_omoris.GetDataById(Convert.ToInt32(obj_data.id));
+                                break;
+                            case "SP_GetArticleTagData":
+                                json_data_source = data_omoris.GetDataById(Convert.ToInt32(obj_data.id));
+                                break;
+
+                            default:
+                                break;
+                        }
+
+                        break;
                     default:
                         break;
                 }
