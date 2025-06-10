@@ -492,7 +492,6 @@ namespace JobSyncStoreToElasticSearch.DbWorker
                             case "SP_GetArticleTagData":
                                 json_data_source = data_omoris.GetDataById(Convert.ToInt32(obj_data.id));
                                 break;
-
                             case "SP_GetListProvinces":
                                 json_data_source = data_omoris.GetDataById(Convert.ToInt32(obj_data.id));
                                 break;
