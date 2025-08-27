@@ -53,8 +53,17 @@ namespace JobSyncStoreToElasticSearch
 
         static void Main(string[] args)
         {
+            
+            
+
+           
+
             try
             {
+                // 🚀 Báo TELE khi job bật lên
+                SendMessageToTelegram(tele_token, tele_group_id,
+                    $"[Info] JobSyncStoreToElasticSearch STARTED at {DateTime.Now:yyyy-MM-dd HH:mm:ss}");
+
                 var factory = new ConnectionFactory()
                 {
                     HostName = QUEUE_HOST,
