@@ -118,6 +118,9 @@ namespace JobSyncStoreToElasticSearch.DbWorker
                             case "SP_GetArticleTagData":
                                 json_data_source = data_hulotoys.GetDataById(Convert.ToInt32(obj_data.id));
                                 break;
+                            case "SP_GetOrderMerge":
+                                json_data_source = data_hulotoys.GetDataById(Convert.ToInt32(obj_data.id));
+                                break;
 
                             default:
                                 break;
