@@ -12,6 +12,7 @@
 
         public const int EDUCATION = 6;
         public const int OMORI = 7;
+        public const int XTECH = 9;
 
     }
 }
